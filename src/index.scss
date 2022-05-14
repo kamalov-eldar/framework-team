@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%; // чтоб не прывышало размеры контейнера
+  height: auto; // для пропорционального сжатия по высоте
+}
+
+//убирает подсветку во всех браузерах на input, select, button, a
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.body_dark {
+  background: black;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+input::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.PaginationPage {
+  width: 41px;
+  height: 41px;
+}
+
+

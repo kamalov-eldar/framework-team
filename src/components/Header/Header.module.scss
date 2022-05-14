@@ -1,0 +1,22 @@
+
+.header {
+  width: 100%;
+}
+.header__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.header__logo {
+  height: 64px;
+  img {
+    width: 64px;
+    height: 64px;
+  }
+}
+.header__theme__btn {
+  cursor:pointer;
+}

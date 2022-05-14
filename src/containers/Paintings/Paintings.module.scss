@@ -1,0 +1,25 @@
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 45px;
+
+}
+.container {
+  max-width: 1120px;
+  margin-bottom: 40px;
+}
+
+.pagination {
+  width: 100%;
+}
+.input__created {
+  background-color: #EFEFEF;
+  width: 95px;
+}
+.input__created_dark {
+  background-color: #FFFFFF;
+}
+.range__line {
+  margin: 0 10px;
+}
+

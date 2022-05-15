@@ -7,7 +7,6 @@ import clsnm from 'classnames';
 import {
   Select, Range, Input, Pagination,
 } from 'fwt-internship-uikit';
-import Line from './images/Line.svg';
 
 import PaintingsList from '../../components/Paintings/PaintingsList';
 
@@ -69,66 +68,74 @@ function Paintings() {
   return (
     <div>
       <div className={style.filters}>
-        <Input
-          value={namePainting}
-          isDarkTheme={storeData.themeIsDark}
-          type="text"
-          placeholder="Name"
-          onChange={onNamePaintingChange}
-        />
-        <Select
-          options={storeData.authorsList}
-          isDarkTheme={storeData.themeIsDark}
-          value={author}
-          onChange={(authorName) => {
-            setAuthor(authorName);
-            dispatch(setCurrentPageAC(1));
-          }}
-        />
-        <Select
-          options={storeData.locationsList}
-          isDarkTheme={storeData.themeIsDark}
-          value={location}
-          onChange={(locationName) => {
-            dispatch(setCurrentPageAC(1));
-            setLocation(locationName);
-          }}
-        />
-        <Range
+
+        <div className={style.filterItem}>
+          <Input
+            value={namePainting}
+            isDarkTheme={storeData.themeIsDark}
+            type="text"
+            placeholder="Name"
+            onChange={onNamePaintingChange}
+          />
+        </div>
+        <div className={style.filterItem}>
+          <Select
+            options={storeData.authorsList}
+            isDarkTheme={storeData.themeIsDark}
+            value={author}
+            onChange={(authorName) => {
+              setAuthor(authorName);
+              dispatch(setCurrentPageAC(1));
+            }}
+          />
+        </div>
+        <div className={style.filterItem}>
+          <Select
+            options={storeData.locationsList}
+            isDarkTheme={storeData.themeIsDark}
+            value={location}
+            onChange={(locationName) => {
+              dispatch(setCurrentPageAC(1));
+              setLocation(locationName);
+            }}
+          />
+        </div>
+        <div className={style.filterItem}>
+          <Range
           /*  children="Name" */
-          isDarkTheme={storeData.themeIsDark}
-          placeholder="Name"
-          onClose={() => {}}
-        >
-          <Input
-            value={createdFrom}
-            className={clsnm(style.input__created, {
-              [style.input__created_dark]: storeData.themeIsDark,
-            })}
-            type="text"
-            placeholder="from"
-            onChange={(e) => setCreatedFrom(e.target.value)}
-          />
-          <span className={style.range__line}>
-            <img src={Line} alt="line" />
-          </span>
-          <Input
-            value={createdBefore}
-            className={clsnm(style.input__created, {
-              [style.input__created_dark]: storeData.themeIsDark,
-            })}
-            type="text"
-            placeholder="before"
-            onChange={(e) => setCreatedBefore(e.target.value)}
-          />
-        </Range>
+            isDarkTheme={storeData.themeIsDark}
+            placeholder="Name"
+            onClose={() => {}}
+          >
+            <Input
+              value={createdFrom}
+              className={clsnm(style.input__created, {
+                [style.input__created_dark]: storeData.themeIsDark,
+              })}
+              type="text"
+              placeholder="from"
+              onChange={(e) => setCreatedFrom(e.target.value)}
+            />
+            <span className={style.range__line}> </span>
+            <Input
+              value={createdBefore}
+              className={clsnm(style.input__created, {
+                [style.input__created_dark]: storeData.themeIsDark,
+              })}
+              type="text"
+              placeholder="before"
+              onChange={(e) => setCreatedBefore(e.target.value)}
+            />
+          </Range>
+        </div>
+
       </div>
       <div className={style.container}>
         {storeData.paintingsList ? (
           <PaintingsList
             locationsList={storeData.locationsList}
             authorsList={storeData.authorsList}
-            paintingsList={storeData.paintingsList ? storeData.paintingsList : []} // ?? []
+            paintingsList={storeData.paintingsList ?? []} // ?? []
           />
         ) : null}
       </div>

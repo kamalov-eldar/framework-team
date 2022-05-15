@@ -44,4 +44,41 @@ input::placeholder {
   height: 41px;
 }
 
+.Input,
+.Select {
+  width: 100%;
 
+  &--dark {
+    background-color: #000000;
+  }
+}
+
+.Range {
+  width: 100%;
+
+  &--dark {
+    background-color: #000000;
+  }
+}
+
+.Range__сontainer--dark {
+  background-color: #000000;
+}
+
+.Select__title {
+  width: calc(100% - 15px);
+  min-width: 0;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+.Select__optionContainer--dark {
+  background-color: #000000;
+
+}
+
+.Range__сontainer {
+  @media (max-width: 1023px) {
+    flex-direction: column;
+  }
+}

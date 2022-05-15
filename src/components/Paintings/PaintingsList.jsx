@@ -63,6 +63,8 @@ PaintingsList.propTypes = {
       id: PropTypes.number,
       pictureUrl: PropTypes.string,
       name: PropTypes.string,
+      authorId: PropTypes.number,
+      locationId: PropTypes.number,
     }),
   ),
   locationsList: PropTypes.arrayOf(

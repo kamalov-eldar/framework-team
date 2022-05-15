@@ -1,13 +1,17 @@
-
 .header {
   width: 100%;
 }
+
 .header__container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 25px;
+  }
 }
 
 .header__logo {
@@ -17,6 +21,7 @@
     height: 64px;
   }
 }
+
 .header__theme__btn {
-  cursor:pointer;
+  cursor: pointer;
 }

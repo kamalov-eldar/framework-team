@@ -5,9 +5,9 @@ import {
   SET_LOCATIONS,
   SET_AUTHORS,
   SET_THEME,
-} from "./actionTypes";
+} from './actionTypes';
 
-let initialState = {
+const initialState = {
   paintingsList: [],
   authorsList: [],
   locationsList: [],
@@ -15,19 +15,16 @@ let initialState = {
   currentPage: 1,
   themeIsDark: false,
 };
+// const state = initialState;
 
-const paintingsReducer = (state = initialState, action) => {
-  //console.log("action-paintingsReducer: ", action);
-
+const paintingsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    // получить массив картин
     case SET_PAINTINGS: {
       return {
         ...state,
         paintingsList: action.payload,
       };
     }
-    // получить массив авторов
     case SET_AUTHORS: {
       return {
         ...state,
@@ -48,7 +45,7 @@ const paintingsReducer = (state = initialState, action) => {
     case SET_COUNT_PAGES: {
       return { ...state, countPages: action.countPages };
     }
-    // установить кол-во страниц
+    // установить тему
     case SET_THEME: {
       return { ...state, themeIsDark: action.themeIsDark };
     }

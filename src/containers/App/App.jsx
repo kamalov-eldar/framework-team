@@ -1,7 +1,9 @@
-import Painting from "../Paintings/Paintings";
-import Header from "../../components/Header/Header";
+import React from 'react';
 
-import style from "./App.module.scss";
+import Painting from '../Paintings';
+import Header from '../../components/Header/Header';
+
+import style from './App.module.scss';
 
 function App() {
   return (

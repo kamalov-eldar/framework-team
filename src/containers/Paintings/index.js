@@ -1,1 +1,3 @@
-export { default } from "./Painting";
+import Paintings from './Paintings';
+
+export default Paintings;

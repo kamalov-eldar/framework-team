@@ -1,73 +1,62 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-//import { connect } from "react-redux";
-import clsnm from "classnames";
+import React, { useEffect, useState } from 'react';
 
-import Line from "./images/Line.svg";
+import { useDispatch, useSelector } from 'react-redux';
+import clsnm from 'classnames';
 
-//import PropTypes from "prop-types";
-import { Select } from "fwt-internship-uikit";
-import { Range } from "fwt-internship-uikit";
-import { Input } from "fwt-internship-uikit";
-import { Pagination } from "fwt-internship-uikit";
+// import PropTypes from "prop-types";
+import {
+  Select, Range, Input, Pagination,
+} from 'fwt-internship-uikit';
+import Line from './images/Line.svg';
 
-import PaintingsList from "../../components/Paintings/PaintingsList";
+import PaintingsList from '../../components/Paintings/PaintingsList';
 
 import {
   setCurrentPageAC,
   fetchAuthors,
   fetchPaintings,
   fetchLocations,
-} from "../../store/paintings/actions";
+} from '../../store/paintings/actions';
 
-import style from "./Paintings.module.scss";
+import style from './Paintings.module.scss';
 
-const Paintings = () => {
-  const [author, setAuthor] = useState("Author");
-  const [location, setLocation] = useState("Location");
-  const [namePainting, setNamePainting] = useState("");
-  const [createdFrom, setCreatedFrom] = useState("");
-  const [createdBefore, setCreatedBefore] = useState("");
+function Paintings() {
+  const [author, setAuthor] = useState('Author');
+  const [location, setLocation] = useState('Location');
+  const [namePainting, setNamePainting] = useState('');
+  const [createdFrom, setCreatedFrom] = useState('');
+  const [createdBefore, setCreatedBefore] = useState('');
 
   const dispatch = useDispatch();
 
-  //const state = useStore().getState();
+  // const state = useStore().getState();
 
-  const storeData = useSelector((store) => {
-    return {
-      authorsList: store.authorsList,
-      locationsList: store.locationsList,
-      paintingsList: store.paintingsList,
-      countPages: store.countPages,
-      currentPage: store.currentPage,
-      themeIsDark: store.themeIsDark,
-    };
-  });
+  const storeData = useSelector((store) => ({
+    authorsList: store.authorsList,
+    locationsList: store.locationsList,
+    paintingsList: store.paintingsList,
+    countPages: store.countPages,
+    currentPage: store.currentPage,
+    themeIsDark: store.themeIsDark,
+  }));
 
   useEffect(() => {
-    const authorFinded = storeData.authorsList.find((item) => {
-      return item.name === author;
-    });
-    const locationFinded = storeData.locationsList.find((item) => {
-      return item.name === location;
-    });
-    dispatch(
-      fetchPaintings(storeData.currentPage, {
-        authorId: authorFinded?.id,
-        locationId: locationFinded?.id,
-        namePainting: namePainting,
-        createdFrom: createdFrom,
-        createdBefore: createdBefore,
-      })
-    );
-    // ??
-    //
-  }, [storeData.currentPage, author, location, namePainting, createdFrom, createdBefore]);
+    const authorFinded = storeData.authorsList.find((item) => item.name === author);
+    const locationFinded = storeData.locationsList.find((item) => item.name === location);
+    dispatch(fetchPaintings(storeData.currentPage, {
+      authorId: authorFinded?.id,
+      locationId: locationFinded?.id,
+      namePainting,
+      createdFrom,
+      createdBefore,
+    }));
+  }, [storeData.currentPage, author, location, namePainting, createdFrom,
+    createdBefore, storeData.authorsList, storeData.locationsList, dispatch]);
 
   useEffect(() => {
     dispatch(fetchAuthors());
     dispatch(fetchLocations());
-  }, []);
+  }, [dispatch]);
 
   //  https://test-front.framework.team/paintings?_page=1&_limit=12
 
@@ -139,7 +128,7 @@ const Paintings = () => {
           <PaintingsList
             locationsList={storeData.locationsList}
             authorsList={storeData.authorsList}
-            paintingsList={storeData.paintingsList ?? []}
+            paintingsList={storeData.paintingsList ? storeData.paintingsList : []} // ?? []
           />
         ) : null}
       </div>
@@ -154,10 +143,10 @@ const Paintings = () => {
       />
     </div>
   );
-};
+}
 
 /* Paintings.propTypes = {
   setErrorGetAPI: PropTypes.func,
 }; */
-//export default withErrorGetAPI(Paintings);
+// export default withErrorGetAPI(Paintings);
 export default Paintings; // connect((state) => state)(Paintings); // Paintings;

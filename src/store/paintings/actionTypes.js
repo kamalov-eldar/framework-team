@@ -1,6 +1,6 @@
-export const SET_PAINTINGS = "SET_PAINTINGS";
-export const SET_AUTHORS = "SET_AUTHORS";
-export const SET_LOCATIONS = "SET_LOCATIONS";
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-export const SET_COUNT_PAGES = "SET_COUNT_PAGES";
-export const SET_THEME = "SET_THEME";
+export const SET_PAINTINGS = 'SET_PAINTINGS';
+export const SET_AUTHORS = 'SET_AUTHORS';
+export const SET_LOCATIONS = 'SET_LOCATIONS';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const SET_COUNT_PAGES = 'SET_COUNT_PAGES';
+export const SET_THEME = 'SET_THEME';

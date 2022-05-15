@@ -1,22 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable no-undef */
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { setThemeAC } from "../../store/paintings/actions";
+import { setThemeAC } from '../../store/paintings/actions';
 
-import logo from "./images/logo.svg";
-import btnDark from "./images/btn-dark.svg";
-import btnLight from "./images/btn-light.svg";
+import logo from './images/logo.svg';
+import btnDark from './images/btn-dark.svg';
+import btnLight from './images/btn-light.svg';
 
-import style from "./Header.module.scss";
+import style from './Header.module.scss';
 
-const Header = () => {
+export default function Header() {
   const dispatch = useDispatch();
 
   const themeIsDark = useSelector((state) => state.themeIsDark);
 
   if (themeIsDark) {
-    document.body.style = "background: black;";
+    document.body.style = 'background: black;';
   } else {
-    document.body.style = "background: ;";
+    document.body.style = 'background: ;';
   }
 
   const toggleTheme = () => {
@@ -46,6 +48,4 @@ const Header = () => {
       </div>
     </div>
   );
-};
-
-export default Header;
+}

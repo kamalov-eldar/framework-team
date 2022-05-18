@@ -208,8 +208,4 @@ function Paintings() {
   );
 }
 
-/* Paintings.propTypes = {
-  setErrorGetAPI: PropTypes.func,
-}; */
-// export default withErrorGetAPI(Paintings);
 export default Paintings;

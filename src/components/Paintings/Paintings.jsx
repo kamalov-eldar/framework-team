@@ -82,7 +82,7 @@ function Paintings() {
       before: filter.before,
     }, { skipNull: true, skipEmptyString: true });
     if (isLoaded) {
-      window.history.pushState({}, '', queryStr.length ? `/?${queryStr}` : '/');
+      window.history.pushState({}, '', window.location.pathname + (queryStr.length ? `?${queryStr}` : ''));
     }
   }, [dispatch, storeData.authorsList, storeData.countPages, storeData.currentPage,
     storeData.locationsList, isLoaded, filter]);

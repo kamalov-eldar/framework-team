@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/framework-team/static/css/main.aa3b7dc1.css",
+    "main.js": "/framework-team/static/js/main.a3f8c99b.js",
+    "static/media/btn-dark.svg": "/framework-team/static/media/btn-dark.403f581a5acb220ed1371178ff780034.svg",
+    "static/media/btn-light.svg": "/framework-team/static/media/btn-light.7efac3cbec09ed1764a502709e1ae415.svg",
+    "static/media/logo.svg": "/framework-team/static/media/logo.936e086d4f0a07a7626931eeabbac2ab.svg",
+    "index.html": "/framework-team/index.html",
+    "main.aa3b7dc1.css.map": "/framework-team/static/css/main.aa3b7dc1.css.map",
+    "main.a3f8c99b.js.map": "/framework-team/static/js/main.a3f8c99b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa3b7dc1.css",
+    "static/js/main.a3f8c99b.js"
+  ]
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import style from './PaintingsList.module.scss';
+import style from './paintingsList.module.scss';
 
 function PaintingsList({ paintingsList, locationsList, authorsList }) {
   const paintings = paintingsList.map((itemPainting) => {

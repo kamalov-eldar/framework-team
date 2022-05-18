@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 
 import 'fwt-internship-uikit/dist/index.css';
-import App from './containers/App/App';
+import App from './components/App/App';
 import './index.scss';
 
 ReactDOM.render(

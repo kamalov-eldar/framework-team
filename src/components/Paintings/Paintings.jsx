@@ -9,7 +9,7 @@ import {
   Select, Range, Input, Pagination,
 } from 'fwt-internship-uikit';
 
-import PaintingsList from '../../components/Paintings/PaintingsList';
+import PaintingsList from '../PaintingsList/PaintingsList';
 
 import {
   setCurrentPageAC,
@@ -18,7 +18,7 @@ import {
   fetchLocations,
 } from '../../store/paintings/actions';
 
-import style from './Paintings.module.scss';
+import style from './paintings.module.scss';
 
 function Paintings() {
   const [filter, setFilter] = useState({
@@ -31,8 +31,6 @@ function Paintings() {
   const [isLoaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
-  // const history = createBrowserHistory();
-  // const state = useStore().getState();
 
   const storeData = useSelector((store) => ({
     authorsList: store.authorsList,
@@ -44,9 +42,7 @@ function Paintings() {
   }));
 
   useEffect(() => {
-    console.log('useEffect-1');
     const parsed = queryString.parse(window.location.search);
-    console.log('parsed', parsed, storeData.authorsList, storeData.locationsList);
     if (!storeData.authorsList.length || !storeData.locationsList.length) {
       return;
     }
@@ -61,20 +57,13 @@ function Paintings() {
       from: parsed.from ? parsed.from : '',
       before: parsed.before ? parsed.before : '',
     });
-    /* // if (authorFindedName) setAuthor(authorFindedName.name);
-    // if (locationFindedName) setLocation(locationFindedName.name);
-    if (parsed.name) setNamePainting(parsed.name);
-    if (parsed.from) setCreatedFrom(parsed.from);
-    if (parsed.before) setCreatedBefore(parsed.before); */
     const page = Number(parsed.page);
     if (page) dispatch(setCurrentPageAC(page));
     setLoaded(true);
   }, [storeData.authorsList, storeData.locationsList, dispatch]);
 
   useEffect(() => {
-    console.log('useEffect-2');
     const authorFinded = storeData.authorsList.find((item) => item.name === filter.author);
-    console.log('authorFinded: ', authorFinded);
     const locationFinded = storeData.locationsList.find((item) => item.name === filter.location);
 
     dispatch(fetchPaintings(storeData.currentPage, {
@@ -84,7 +73,6 @@ function Paintings() {
       createdFrom: filter.from,
       createdBefore: filter.before,
     }));
-    // history.pushState(state, title, url)
     const queryStr = queryString.stringify({
       authorId: authorFinded?.id > 0 ? authorFinded?.id : null,
       locationId: locationFinded?.id > 0 ? locationFinded?.id : null,
@@ -103,10 +91,6 @@ function Paintings() {
     dispatch(fetchAuthors());
     dispatch(fetchLocations());
   }, [dispatch]);
-
-  //  https://test-front.framework.team/paintings?_page=1&_limit=12
-
-  // https://test-front.framework.team/paintings?_page=1&_limit=12&created_gte=1400&created_lte=1500
 
   return (
     <div>

@@ -1,3 +1,3 @@
-import PaintingsList from './PaintingsList';
+import Paintings from './Paintings';
 
-export default PaintingsList;
+export default Paintings;

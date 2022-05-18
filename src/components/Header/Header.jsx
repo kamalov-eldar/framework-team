@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,7 +7,7 @@ import logo from './images/logo.svg';
 import btnDark from './images/btn-dark.svg';
 import btnLight from './images/btn-light.svg';
 
-import style from './Header.module.scss';
+import style from './header.module.scss';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -23,14 +22,7 @@ export default function Header() {
 
   const toggleTheme = () => {
     dispatch(setThemeAC(!themeIsDark));
-
-    /* document.body.style = {{
-      backgroundColor: themeIsDark ? ' ' : 'black',
-    }}; */
   };
-  /* style={{
-        backgroundColor: isBackgroundRed ? 'red' : 'blue',
-      }} */
   return (
     <div className={style.header}>
       <div className={style.header__container}>

@@ -1,4 +1,4 @@
-.App {
+.app {
   max-width: 1366px;
   margin: 0 auto;
 
@@ -9,12 +9,10 @@
   }
 }
 
-.Container {
+.container {
   max-width: 1120px;
   margin: 0 auto;
 
-  //	от 1024 px до 1365 px
-  // max-width до 768px
   @media (max-width: 1023px) {
     max-width: 940px;
   }
@@ -22,14 +20,4 @@
   @media (max-width: 767px) {
     max-width: 100%;
   }
-
-  // max-width до 576px
-  /* @media (max-width: 576px) {
-    padding: 0 15px;
-  }
-
-  // max-width до 320px
-  @media (max-width: 320px) {
-    padding: 0 10px;
-  } */
 }

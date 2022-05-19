@@ -6,7 +6,7 @@ import clsnm from 'classnames';
 
 // import PropTypes from "prop-types";
 import {
-  Select, Range, Input, Pagination,
+  Select, Input, Pagination, Range,
 } from 'fwt-internship-uikit';
 
 import PaintingsList from '../PaintingsList/PaintingsList';
@@ -20,7 +20,7 @@ import {
 
 import style from './paintings.module.scss';
 
-function Paintings() {
+const Paintings = function Paintings() {
   const [filter, setFilter] = useState({
     author: 'Author',
     location: 'Location',
@@ -138,7 +138,6 @@ function Paintings() {
         <div className={style.filterItem}>
           <Range
             isDarkTheme={storeData.themeIsDark}
-            placeholder="Name"
             onClose={() => {}}
           >
             <Input
@@ -175,7 +174,7 @@ function Paintings() {
           <PaintingsList
             locationsList={storeData.locationsList}
             authorsList={storeData.authorsList}
-            paintingsList={storeData.paintingsList ?? []} // ?? []
+            paintingsList={storeData.paintingsList ?? []}
           />
         ) : null}
       </div>
@@ -190,6 +189,6 @@ function Paintings() {
       />
     </div>
   );
-}
+};
 
 export default Paintings;

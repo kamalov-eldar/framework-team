@@ -1,5 +1,3 @@
-// import { createBrowserHistory } from 'history';
-
 import {
   AUTHORS_URL, BASE_URL, LOCATIONS_URL, PAINTINGS_URL,
 } from '../../constants/constants';
@@ -14,8 +12,6 @@ import {
 } from './actionTypes';
 
 const paintingsLimit = 12;
-// const history = createBrowserHistory();
-
 export const setAuthorsAC = (authorsList) => ({
   type: SET_AUTHORS,
   authorsList,
@@ -93,7 +89,6 @@ export const fetchPaintings = (numberPage = 1, filter = {}) => (dispatch) => {
           };
         },
       );
-      // history.push(`http://localhost:3000/filter?_page=${numberPage}&_limit=${paintingsLimit}${queryStr}`);
       dispatch(setPaintingsAC(paintingsList));
     },
   );

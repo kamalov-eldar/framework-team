@@ -9,7 +9,7 @@ import btnLight from './images/btn-light.svg';
 
 import style from './header.module.scss';
 
-export default function Header() {
+const Header = function Header() {
   const dispatch = useDispatch();
 
   const themeIsDark = useSelector((state) => state.themeIsDark);
@@ -40,4 +40,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

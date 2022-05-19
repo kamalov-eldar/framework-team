@@ -5,15 +5,14 @@ import Header from '../Header/Header';
 
 import style from './app.module.scss';
 
-function App() {
+const App = function App() {
   return (
-    <div className={style.App}>
-      <div className={style.Container}>
-        <Header className="App-header" />
+    <div className={style.app}>
+      <div className={style.container}>
+        <Header />
         <Painting />
-        <footer />
       </div>
     </div>
   );
-}
+};
 export default App;

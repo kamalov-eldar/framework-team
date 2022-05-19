@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-*.docx
+
 # production
 /build
 

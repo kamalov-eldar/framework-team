@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
-// import { createBrowserHistory } from 'history';
 import { useDispatch, useSelector } from 'react-redux';
 import clsnm from 'classnames';
 
-// import PropTypes from "prop-types";
 import {
   Select, Input, Pagination, Range,
 } from 'fwt-internship-uikit';

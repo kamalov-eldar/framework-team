@@ -2,9 +2,6 @@
 
 ### Галерея картин с фильтрацией
 
-![image](https://github.com/kamalov-eldar/dashboard-ts/blob/master/src/img/to-do.jpg)
-
-
 ## Задание
 
 1.	Необходимо сверстать страницу списка картин - [макет в figma](https://www.figma.com/file/P1jT5eDroX38w6y8Azpx5e/FWT-Front-end-%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5?node-id=304%3A50).

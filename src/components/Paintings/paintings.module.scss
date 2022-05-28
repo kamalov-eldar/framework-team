@@ -1,50 +1,8 @@
-.filters {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px 20px;
-  justify-content: space-between;
-  margin-bottom: 45px;
-
-  @media (max-width: 767px) {
-    grid-template-columns: 1fr;
-    grid-gap: 15px 0px;
-
-  }
-}
-
-.filterItem {
-  min-width: 0;
-}
-
 .container {
   max-width: 1120px;
   margin-bottom: 40px;
 
   @media (max-width: 767px) {
     margin-bottom: 30px;
-  }
-}
-
-.pagination {
-  width: 100%;
-}
-
-.input__created {
-  background-color: #EFEFEF;
-  width: 95px;
-}
-
-.input__created_dark {
-  background-color: #FFFFFF;
-}
-
-.range__line {
-  padding: 10px 10px;
-
-  &::before {
-    content: "";
-    display: block;
-    width: 12px;
-    border-top: 1px solid;
   }
 }

@@ -3,7 +3,7 @@ import {
   SET_CURRENT_PAGE,
   SET_COUNT_PAGES,
   SET_LOCATIONS,
-  SET_AUTHORS,
+  SET_AUTHORS_AND_LOCATIONS,
   SET_THEME,
 } from './actionTypes';
 
@@ -25,10 +25,11 @@ const paintingsReducer = (state = initialState, action = {}) => {
         paintingsList: action.payload,
       };
     }
-    case SET_AUTHORS: {
+    case SET_AUTHORS_AND_LOCATIONS: {
       return {
         ...state,
         authorsList: action.authorsList,
+        locationsList: action.locationsList,
       };
     }
     case SET_LOCATIONS: {

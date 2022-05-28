@@ -6,40 +6,36 @@ import {
   SET_PAINTINGS,
   SET_COUNT_PAGES,
   SET_CURRENT_PAGE,
-  SET_AUTHORS,
+  SET_AUTHORS_AND_LOCATIONS,
   SET_LOCATIONS,
   SET_THEME,
 } from './actionTypes';
 
 const paintingsLimit = 12;
-export const setAuthorsAC = (authorsList) => ({
-  type: SET_AUTHORS,
-  authorsList,
-});
-
-export const fetchAuthors = () => (dispatch) => {
-  getDataAPI(AUTHORS_URL).then((response) => {
-    const authorsList = response.map(({ id, name }) => ({
-      id,
-      name,
-    }));
-    dispatch(setAuthorsAC([{ id: 0, name: 'Author' }, ...authorsList]));
-  });
-};
-
 export const setLocationsAC = (locationsList) => ({
   type: SET_LOCATIONS,
   locationsList,
 });
 
-export const fetchLocations = () => (dispatch) => {
-  getDataAPI(LOCATIONS_URL).then((response) => {
-    const locationsList = response.map(({ id, location }) => ({
-      id,
-      name: location,
-    }));
-    dispatch(setLocationsAC([{ id: 0, name: 'Location' }, ...locationsList]));
-  });
+export const fetchAuthorsAndLocations = () => (dispatch) => {
+  Promise.all([getDataAPI(AUTHORS_URL), getDataAPI(LOCATIONS_URL)])
+    .then(([responseAuthors, responseLocations]) => {
+      const authorsList = responseAuthors.map(({ id, name }) => ({
+        id,
+        name,
+      }));
+      const locationsList = responseLocations.map(({ id, location }) => ({
+        id,
+        name: location,
+      }));
+      // dispatch(setLocationsAC([{ id: 0, name: 'Location' }, ...locationsList]));
+      dispatch({
+        type: SET_AUTHORS_AND_LOCATIONS,
+        authorsList: [{ id: 0, name: 'Author' }, ...authorsList],
+        locationsList: [{ id: 0, name: 'Location' }, ...locationsList],
+      });
+      console.log('fetch AuthorsAndLocations');
+    });
 };
 
 export const setPaintingsAC = (paintingsList) => ({
@@ -52,6 +48,7 @@ export const setCountPagesAC = (countPages) => ({
 });
 
 export const fetchPaintings = (numberPage = 1, filter = {}) => (dispatch) => {
+  console.log('fetch Paintings start', { filter, numberPage });
   let queryStr = '';
   if (filter.locationId) {
     queryStr += `&locationId=${filter.locationId}`;
@@ -65,39 +62,38 @@ export const fetchPaintings = (numberPage = 1, filter = {}) => (dispatch) => {
   if (filter.createdFrom && filter.createdBefore) {
     queryStr += `&created_gte=${filter.createdFrom}&created_lte=${filter.createdBefore}`;
   }
-
-  getDataAPI(`${PAINTINGS_URL}?${queryStr}`).then((response) => {
-    const totalPaintings = response.length; // 33
+  Promise.all([
+    getDataAPI(`${PAINTINGS_URL}?${queryStr}`),
+    getDataAPI(`${PAINTINGS_URL}?_page=${numberPage}&_limit=${paintingsLimit}${queryStr}`),
+  ]).then(([responseCountPages, responsePaintings]) => {
+    const totalPaintings = responseCountPages.length; // 33
     const countPages = Math.ceil(totalPaintings / paintingsLimit);
     dispatch(setCountPagesAC(countPages)); // установить кол-во страниц
-  });
 
-  getDataAPI(`${PAINTINGS_URL}?_page=${numberPage}&_limit=${paintingsLimit}${queryStr}`).then(
-    (response) => {
-      const paintingsList = response.map(
-        ({
-          name, imageUrl, id, created, authorId, locationId,
-        }) => {
-          const pictureUrl = BASE_URL + imageUrl;
-          return {
-            name,
-            pictureUrl,
-            id,
-            created,
-            authorId,
-            locationId,
-          };
-        },
-      );
-      dispatch(setPaintingsAC(paintingsList));
-    },
-  );
+    const paintingsList = responsePaintings.map(
+      ({
+        name, imageUrl, id, created, authorId, locationId,
+      }) => {
+        const pictureUrl = BASE_URL + imageUrl;
+        return {
+          name,
+          pictureUrl,
+          id,
+          created,
+          authorId,
+          locationId,
+        };
+      },
+    );
+    dispatch(setPaintingsAC(paintingsList));
+    console.log('fetch Paintings Ends');
+  });
 };
 
 export const setCurrentPageAC = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
-});
+}); 
 export const setThemeAC = (themeIsDark) => ({
   type: SET_THEME,
   themeIsDark,

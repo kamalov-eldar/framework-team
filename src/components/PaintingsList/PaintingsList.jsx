@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
 import style from './paintingsList.module.scss';
 
 function PaintingsList({ paintingsList, locationsList, authorsList }) {
+  /* console.log('{ paintingsList, locationsList, authorsList }: ',
+    { paintingsList, locationsList, authorsList }); */
+
   const paintings = paintingsList.map((itemPainting) => {
+    // console.log('map', itemPainting);
     const authorFinded = authorsList.find((item) => item.id === itemPainting.authorId);
     const locationFinded = locationsList.find((item) => item.id === itemPainting.locationId);
     if (authorFinded && locationFinded) {
@@ -16,7 +21,7 @@ function PaintingsList({ paintingsList, locationsList, authorsList }) {
     }
     return itemPainting;
   });
-
+  // console.log('render-PaintingsList');
   return (
     <div className={style.list}>
       {paintings.map((painting) => (
@@ -81,4 +86,8 @@ PaintingsList.propTypes = {
   ),
 };
 
-export default React.memo(PaintingsList);
+export default connect((state) => ({
+  paintingsList: state.paintingsList,
+  locationsList: state.locationsList,
+  authorsList: state.authorsList,
+}))(PaintingsList);

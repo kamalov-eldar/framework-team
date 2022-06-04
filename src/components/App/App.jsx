@@ -14,7 +14,6 @@ import style from './app.module.scss';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('App useEffect ');
     dispatch(fetchAuthorsAndLocations());
   }, [dispatch]);
 

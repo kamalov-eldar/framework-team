@@ -13,8 +13,6 @@ import {
 function Pagination({ themeIsDark, countPages, currentPage }) {
   const dispatch = useDispatch();
 
-  // console.log('render-Pagination');
-
   return (
     <div>
       <PaginationUikit

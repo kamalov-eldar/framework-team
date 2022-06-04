@@ -4,20 +4,13 @@ import { connect, useDispatch } from 'react-redux';
 import clsnm from 'classnames';
 import PropTypes from 'prop-types';
 
-import {
-  Select, Input, Range,
-} from 'fwt-internship-uikit';
+import { Select, Input, Range } from 'fwt-internship-uikit';
 
-import {
-  setCurrentPageAC,
-  fetchPaintings,
-} from '../../store/paintings/actions';
+import { setCurrentPageAC, fetchPaintings } from '../../store/paintings/actions';
 
 import style from './filters.module.scss';
 
-function Filters({
-  authorsList, locationsList, currentPage, themeIsDark,
-}) {
+function Filters({ authorsList, locationsList, currentPage, themeIsDark }) {
   const [filter, setFilter] = useState({
     author: 'Author',
     location: 'Location',
@@ -25,6 +18,7 @@ function Filters({
     from: '',
     before: '',
   });
+  // пока не загружены все данные authors и locations
   const [isLoaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
@@ -35,19 +29,19 @@ function Filters({
     if (!authorsList.length || !locationsList.length) {
       return;
     }
+    // после проверки устанавливаем что данные загрузились
     setLoaded(true);
+
+    // если в строке браузера query параметры
     if (!Object.keys(parsed).length) {
       return;
     }
 
-    // console.log('Filters useEffect-1 parsed: ', parsed);
+    const authorFindedName = authorsList.find((item) => item.id === Number(parsed.authorId));
 
-    const authorFindedName = authorsList.find((item) => (
-      item.id === Number(parsed.authorId)));
+    const locationFindedName = locationsList.find((item) => item.id === Number(parsed.locationId));
 
-    const locationFindedName = locationsList.find((item) => (
-      item.id === Number(parsed.locationId)));
-
+    // установить фильтр
     setFilter({
       author: authorFindedName ? authorFindedName.name : 'Author',
       location: locationFindedName ? locationFindedName.name : 'Location',
@@ -61,47 +55,49 @@ function Filters({
     if (page) dispatch(setCurrentPageAC(page));
   }, [authorsList, locationsList, dispatch]);
 
-  const authorFindedId = useMemo(
-    () => {
-      const athorFind = authorsList.find((item) => item.name === filter.author);
-      return athorFind?.id > 0 ? athorFind.id : undefined;
-    },
-    [authorsList, filter.author],
-  );
-  const locationFindedId = useMemo(
-    () => {
-      const locationFind = locationsList.find((item) => item.name === filter.location);
-      return locationFind?.id > 0 ? locationFind.id : undefined;
-    },
-    [locationsList, filter.location],
-  );
+  const authorFindedId = useMemo(() => {
+    const athorFind = authorsList.find((item) => item.name === filter.author);
+    return athorFind?.id > 0 ? athorFind.id : undefined;
+  }, [authorsList, filter.author]);
+  const locationFindedId = useMemo(() => {
+    const locationFind = locationsList.find((item) => item.name === filter.location);
+    return locationFind?.id > 0 ? locationFind.id : undefined;
+  }, [locationsList, filter.location]);
 
   useEffect(() => {
-    /*  console.log('Filters useEffect-2: ', {
-      authorFindedId, locationFindedId, currentPage, filter,
-    }); */
+    // если не загружены все данные authors и locations то не выполнится код ниже
+    if (!isLoaded) {
+      return;
+    }
+    dispatch(
+      fetchPaintings(currentPage, {
+        authorId: authorFindedId,
+        locationId: locationFindedId,
+        namePainting: filter.name,
+        createdFrom: filter.from,
+        createdBefore: filter.before,
+      })
+    );
 
-    dispatch(fetchPaintings(currentPage, {
-      authorId: authorFindedId,
-      locationId: locationFindedId,
-      namePainting: filter.name,
-      createdFrom: filter.from,
-      createdBefore: filter.before,
-    }));
-    const queryStr = queryString.stringify({
-      authorId: authorFindedId,
-      locationId: locationFindedId,
-      page: currentPage > 1 ? currentPage : null,
-      name: filter.name,
-      from: filter.from,
-      before: filter.before,
-    }, { skipNull: true, skipEmptyString: true });
+    const queryStr = queryString.stringify(
+      {
+        authorId: authorFindedId,
+        locationId: locationFindedId,
+        page: currentPage > 1 ? currentPage : null,
+        name: filter.name,
+        from: filter.from,
+        before: filter.before,
+      },
+      { skipNull: true, skipEmptyString: true }
+    );
     if (isLoaded) {
-      window.history.pushState({}, '', window.location.pathname + (queryStr.length ? `?${queryStr}` : ''));
+      window.history.pushState(
+        {},
+        '',
+        window.location.pathname + (queryStr.length ? `?${queryStr}` : '')
+      );
     }
   }, [dispatch, currentPage, isLoaded, filter, authorFindedId, locationFindedId]);
-
-  // console.log('render-Filters');
 
   return (
     <div className={style.filters}>
@@ -111,10 +107,12 @@ function Filters({
           isDarkTheme={themeIsDark}
           type="text"
           placeholder="Name"
-          onChange={(e) => setFilter((prevState) => ({
-            ...prevState,
-            name: e.target.value,
-          }))}
+          onChange={(e) =>
+            setFilter((prevState) => ({
+              ...prevState,
+              name: e.target.value,
+            }))
+          }
         />
       </div>
       <div className={style.filterItem}>
@@ -146,10 +144,7 @@ function Filters({
         />
       </div>
       <div className={style.filterItem}>
-        <Range
-          isDarkTheme={themeIsDark}
-          onClose={() => {}}
-        >
+        <Range isDarkTheme={themeIsDark} onClose={() => {}}>
           <Input
             value={filter.from}
             className={clsnm(style.input__created, {
@@ -157,10 +152,12 @@ function Filters({
             })}
             type="text"
             placeholder="from"
-            onChange={(e) => setFilter((prevState) => ({
-              ...prevState,
-              from: e.target.value,
-            }))}
+            onChange={(e) =>
+              setFilter((prevState) => ({
+                ...prevState,
+                from: e.target.value,
+              }))
+            }
           />
           <span className={style.range__line}> </span>
           <Input
@@ -170,10 +167,12 @@ function Filters({
             })}
             type="text"
             placeholder="before"
-            onChange={(e) => setFilter((prevState) => ({
-              ...prevState,
-              before: e.target.value,
-            }))}
+            onChange={(e) =>
+              setFilter((prevState) => ({
+                ...prevState,
+                before: e.target.value,
+              }))
+            }
           />
         </Range>
       </div>
@@ -192,13 +191,13 @@ Filters.propTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
-    }),
+    })
   ),
   authorsList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
-    }),
+    })
   ),
   currentPage: PropTypes.number,
   themeIsDark: PropTypes.bool,

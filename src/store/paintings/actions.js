@@ -26,7 +26,6 @@ export const fetchAuthorsAndLocations = () => (dispatch) => {
         id,
         name: location,
       }));
-      // dispatch(setLocationsAC([{ id: 0, name: 'Location' }, ...locationsList]));
       dispatch({
         type: SET_AUTHORS_AND_LOCATIONS,
         authorsList: [{ id: 0, name: 'Author' }, ...authorsList],

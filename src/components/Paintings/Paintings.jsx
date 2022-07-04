@@ -2,7 +2,7 @@ import React from 'react';
 
 import PaintingsList from '../PaintingsList/PaintingsList';
 
-import style from './paintings.module.scss';
+import style from './Paintings.module.scss';
 
 function Paintings() {
 

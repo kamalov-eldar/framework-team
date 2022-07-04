@@ -7,7 +7,7 @@ import logo from './images/logo.svg';
 import btnDark from './images/btn-dark.svg';
 import btnLight from './images/btn-light.svg';
 
-import style from './header.module.scss';
+import style from './Header.module.scss';
 
 const Header = function Header() {
   const dispatch = useDispatch();

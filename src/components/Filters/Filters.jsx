@@ -8,9 +8,11 @@ import { Select, Input, Range } from 'fwt-internship-uikit';
 
 import { setCurrentPageAC, fetchPaintings } from '../../store/paintings/actions';
 
-import style from './filters.module.scss';
+import style from './Filters.module.scss';
 
 function Filters({ authorsList, locationsList, currentPage, themeIsDark }) {
+  console.log('Filters: ');
+
   const [filter, setFilter] = useState({
     author: 'Author',
     location: 'Location',
@@ -18,6 +20,7 @@ function Filters({ authorsList, locationsList, currentPage, themeIsDark }) {
     from: '',
     before: '',
   });
+  console.log(filter);
   // пока не загружены все данные authors и locations
   const [isLoaded, setLoaded] = useState(false);
 
@@ -59,6 +62,7 @@ function Filters({ authorsList, locationsList, currentPage, themeIsDark }) {
     const athorFind = authorsList.find((item) => item.name === filter.author);
     return athorFind?.id > 0 ? athorFind.id : undefined;
   }, [authorsList, filter.author]);
+
   const locationFindedId = useMemo(() => {
     const locationFind = locationsList.find((item) => item.name === filter.location);
     return locationFind?.id > 0 ? locationFind.id : undefined;

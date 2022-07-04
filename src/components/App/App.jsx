@@ -6,13 +6,13 @@ import Header from '../Header/Header';
 import Filters from '../Filters/Filters';
 import Pagination from '../Pagination';
 
-import {
-  fetchAuthorsAndLocations,
-} from '../../store/paintings/actions';
-import style from './app.module.scss';
+import { fetchAuthorsAndLocations } from '../../store/paintings/actions';
+import style from './App.module.scss';
 
 function App() {
+  console.log('App: ');
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchAuthorsAndLocations());
   }, [dispatch]);

@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
 
 import { connect } from 'react-redux';
-import style from './paintingsList.module.scss';
+import style from './PaintingsList.module.scss';
 
 export const getPaintingsData = createSelector(
   (state) => state.authorsList,
   (state) => state.locationsList,
   (state) => state.paintingsList,
-
-  (athors, locations, paintings) => {
+  (authors, locations, paintings) => {
     const paintingsData = paintings.map((itemPainting) => {
-      const authorFinded = athors.find((item) => item.id === itemPainting.authorId);
+      const authorFinded = authors.find((item) => item.id === itemPainting.authorId);
       const locationFinded = locations.find((item) => item.id === itemPainting.locationId);
       if (authorFinded && locationFinded) {
         return {

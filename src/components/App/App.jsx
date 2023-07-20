@@ -10,22 +10,21 @@ import { fetchAuthorsAndLocations } from '../../store/paintings/actions';
 import style from './App.module.scss';
 
 function App() {
-  console.log('App: ');
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAuthorsAndLocations());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchAuthorsAndLocations());
+    }, [dispatch]);
 
-  return (
-    <div className={style.app}>
-      <div className={style.container}>
-        <Header />
-        <Filters />
-        <Paintings />
-        <Pagination />
-      </div>
-    </div>
-  );
+    return (
+        <div className={style.app}>
+            <div className={style.container}>
+                <Header />
+                <Filters />
+                <Paintings />
+                <Pagination />
+            </div>
+        </div>
+    );
 }
 export default App;

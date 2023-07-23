@@ -33,4 +33,4 @@
 
 ### `npm run deploy` - сборка приложения и выложить на github.pages
 
-сайт -> https://kamalov-eldar.github.io/framework-team/
+сайт -> https://kamalov-eldar.github.io/paintings

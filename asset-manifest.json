@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/framework-team/static/css/main.025a0e5f.css",
-    "main.js": "/framework-team/static/js/main.be9798b7.js",
-    "static/media/btn-dark.svg": "/framework-team/static/media/btn-dark.403f581a5acb220ed1371178ff780034.svg",
-    "static/media/btn-light.svg": "/framework-team/static/media/btn-light.7efac3cbec09ed1764a502709e1ae415.svg",
-    "static/media/logo.svg": "/framework-team/static/media/logo.936e086d4f0a07a7626931eeabbac2ab.svg",
-    "index.html": "/framework-team/index.html",
-    "main.025a0e5f.css.map": "/framework-team/static/css/main.025a0e5f.css.map",
-    "main.be9798b7.js.map": "/framework-team/static/js/main.be9798b7.js.map"
+    "main.css": "/paintings/static/css/main.e6b48b06.css",
+    "main.js": "/paintings/static/js/main.9a8201e1.js",
+    "static/media/btn-dark.svg": "/paintings/static/media/btn-dark.a8ac97a824cf6903506920bb92185a12.svg",
+    "static/media/btn-light.svg": "/paintings/static/media/btn-light.cbbced2826c8ebdb046535df46b8e1d9.svg",
+    "static/media/logo.svg": "/paintings/static/media/logo.70404cd4702cee30a939a3d418d2f8b5.svg",
+    "index.html": "/paintings/index.html",
+    "main.e6b48b06.css.map": "/paintings/static/css/main.e6b48b06.css.map",
+    "main.9a8201e1.js.map": "/paintings/static/js/main.9a8201e1.js.map"
   },
   "entrypoints": [
-    "static/css/main.025a0e5f.css",
-    "static/js/main.be9798b7.js"
+    "static/css/main.e6b48b06.css",
+    "static/js/main.9a8201e1.js"
   ]
 }

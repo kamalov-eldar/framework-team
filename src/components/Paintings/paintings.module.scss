@@ -1,8 +1,8 @@
 .container {
-  max-width: 1120px;
-  margin-bottom: 40px;
+    max-width: 1120px;
+    margin-bottom: 40px;
 
-  @media (max-width: 767px) {
-    margin-bottom: 30px;
-  }
+    @media (max-width: 767px) {
+        margin-bottom: 30px;
+    }
 }
